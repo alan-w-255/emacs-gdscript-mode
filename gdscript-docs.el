@@ -71,7 +71,7 @@ If a page is already open, switch to its buffer. Use local docs if gdscripts-doc
         (if (and (not gdscript-docs-force-online-lookup) (not (or current-prefix-arg force-online)) (not (string= gdscript-docs-local-path "")))
             (let ((file (concat (file-name-as-directory gdscript-docs-local-path) (file-name-as-directory "classes") "class_" symbol ".html")))
               (if (file-exists-p file)
-                  (gdscript-docs-open file)
+                  (gdscript-docs-open (format "file://%s#%s" (expand-file-name file) symbol))
                 (message "No local API help for \"%s\"." symbol)))
           (let ((url (format "https://docs.godotengine.org/en/stable/classes/class_%s.html#%s" symbol symbol)))
             (gdscript-docs-open url)))))))
