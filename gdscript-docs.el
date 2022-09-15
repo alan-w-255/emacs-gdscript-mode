@@ -56,7 +56,7 @@
 If a page is already open, switch to its buffer. Use local docs if gdscripts-docs-local-path set. Use the universal prefix (C-u) to force browsing the online API."
   (interactive)
 
-  (let* ((symbol-at-point (thing-at-point 'symbol t))
+  (let* ((symbol-at-point (if current-prefix-arg (read-string "Look up class: ") (thing-at-point 'symbol t)))
          (symbol (if symbol-at-point (downcase symbol-at-point) ""))
          (buffer (if (not gdscript-docs-use-eww) nil
                    (seq-find
